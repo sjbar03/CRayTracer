@@ -11,7 +11,13 @@
 HINSTANCE hInstance;
 ATOM wcClass;
 
-static BITMAPINFO frame_bitmap_info;
+typedef struct {
+    BITMAPINFOHEADER bmiHeader;
+    DWORD masks[3];
+} BITMAPINFO_565;
+
+
+static BITMAPINFO_565 frame_bitmap_info;
 static HBITMAP frame_bitmap = 0;
 static HDC frame_device_context = 0;
 
@@ -42,7 +48,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
                 DeleteObject(frame_bitmap);
             }
 
-            frame_bitmap = CreateDIBSection(NULL, &frame_bitmap_info, DIB_RGB_COLORS, (void**) &frame.pixels, 0, 0);
+            frame_bitmap = CreateDIBSection(NULL, (BITMAPINFO*) &frame_bitmap_info, DIB_RGB_COLORS, (void**) &frame.pixels, 0, 0);
             SelectObject(frame_device_context, frame_bitmap);
 
             break;
@@ -53,6 +59,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 
 int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int nCmdShow)
 {
+    (void) hInstPrev;
+    (void) cmdline;
     // Register the window class.
     char CLASS_NAME[]  = "Game Window";
 
@@ -72,9 +80,9 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int nCm
     frame_bitmap_info.bmiHeader.biCompression = BI_BITFIELDS;
 
     // 565 masks go in bmiColors (first 3 DWORDs)
-    ((DWORD*)frame_bitmap_info.bmiColors)[0] = 0xF800; // Red mask
-    ((DWORD*)frame_bitmap_info.bmiColors)[1] = 0x07E0; // Green mask
-    ((DWORD*)frame_bitmap_info.bmiColors)[2] = 0x001F; // Blue mask
+    frame_bitmap_info.masks[0] = 0xF800; // R
+    frame_bitmap_info.masks[1] = 0x07E0; // G
+    frame_bitmap_info.masks[2] = 0x001F; // B
 
     frame_device_context = CreateCompatibleDC(0);
 

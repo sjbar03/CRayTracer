@@ -5,6 +5,7 @@
 
 void * graphics(void *arg)
 {
+    (void) arg; // compiler silencing
     for(;;)
     {
         static unsigned int p = 0;
@@ -25,6 +26,7 @@ void * graphics(void *arg)
 
 void * window(void *arg)
 {
+    (void) arg; // compiler silencing
     window_init();
     return NULL;
 }
