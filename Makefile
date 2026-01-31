@@ -24,6 +24,7 @@ run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	rm -f *.o $(TARGET)
+	-del /Q *.o 2>NUL
+	-del /Q $(TARGET) 2>NUL
 
 .PHONY: all run clean
