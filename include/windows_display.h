@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <stdint.h>
 
+#define DEBUG_PRINTF
+
 typedef struct {
     int width;
     int height;

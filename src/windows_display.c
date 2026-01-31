@@ -35,6 +35,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
             return 0;
 
         case WM_SIZE:
+            DEBUG_PRINTF("WM_SIZE\n");
 
             frame.width  = LOWORD(lParam);
             frame.height = HIWORD(lParam);
@@ -135,6 +136,7 @@ void window_init()
 
 void draw()
 {
+    DEBUG_PRINTF("Draw called\n");
     HDC dc = GetDC(frame.hwnd);   
 
     BitBlt(dc, 0, 0,
