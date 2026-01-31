@@ -2,6 +2,7 @@
 #include <pthread.h>
 
 
+
 void * graphics(void *arg)
 {
     for(;;)
