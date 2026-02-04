@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/stephen/Code/CRayTracer/build/cmake_install.cmake",
+		"/Users/stephen/Code/CRayTracer/build/vendored/SDL/cmake_install.cmake",
+		"/Users/stephen/Code/CRayTracer/build/vendored/libfixmath/cmake_install.cmake",
+		"/Users/stephen/Code/CRayTracer/build/vendored/libfixmatrix/cmake_install.cmake",
+		"/Users/stephen/Code/CRayTracer/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfixmath.a CMakeFiles/fixmath.dir/fix16.c.o CMakeFiles/fixmath.dir/fix16_exp.c.o CMakeFiles/fixmath.dir/fix16_sqrt.c.o CMakeFiles/fixmath.dir/fix16_trig.c.o CMakeFiles/fixmath.dir/fract32.c.o CMakeFiles/fixmath.dir/uint32.c.o
+/usr/bin/ranlib libfixmath.a

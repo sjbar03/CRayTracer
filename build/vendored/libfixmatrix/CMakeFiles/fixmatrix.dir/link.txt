@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfixmatrix.a CMakeFiles/fixmatrix.dir/fixarray.c.o CMakeFiles/fixmatrix.dir/fixmatrix.c.o CMakeFiles/fixmatrix.dir/fixvector2d.c.o CMakeFiles/fixmatrix.dir/fixvector3d.c.o
+/usr/bin/ranlib libfixmatrix.a

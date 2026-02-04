@@ -1,0 +1,16 @@
+/Users/stephen/Code/CRayTracer/build/CMakeFiles/edit_cache.dir
+/Users/stephen/Code/CRayTracer/build/CMakeFiles/rebuild_cache.dir
+/Users/stephen/Code/CRayTracer/build/vendored/SDL/CMakeFiles/SDL3-shared.dir
+/Users/stephen/Code/CRayTracer/build/vendored/SDL/CMakeFiles/SDL3_test.dir
+/Users/stephen/Code/CRayTracer/build/vendored/SDL/CMakeFiles/SDL_uclibc.dir
+/Users/stephen/Code/CRayTracer/build/vendored/SDL/CMakeFiles/edit_cache.dir
+/Users/stephen/Code/CRayTracer/build/vendored/SDL/CMakeFiles/rebuild_cache.dir
+/Users/stephen/Code/CRayTracer/build/vendored/libfixmath/CMakeFiles/fixmath.dir
+/Users/stephen/Code/CRayTracer/build/vendored/libfixmath/CMakeFiles/edit_cache.dir
+/Users/stephen/Code/CRayTracer/build/vendored/libfixmath/CMakeFiles/rebuild_cache.dir
+/Users/stephen/Code/CRayTracer/build/vendored/libfixmatrix/CMakeFiles/fixmatrix.dir
+/Users/stephen/Code/CRayTracer/build/vendored/libfixmatrix/CMakeFiles/edit_cache.dir
+/Users/stephen/Code/CRayTracer/build/vendored/libfixmatrix/CMakeFiles/rebuild_cache.dir
+/Users/stephen/Code/CRayTracer/build/src/CMakeFiles/ray.dir
+/Users/stephen/Code/CRayTracer/build/src/CMakeFiles/edit_cache.dir
+/Users/stephen/Code/CRayTracer/build/src/CMakeFiles/rebuild_cache.dir

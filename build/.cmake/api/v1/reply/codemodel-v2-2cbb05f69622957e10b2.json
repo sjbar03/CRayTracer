@@ -1,0 +1,259 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "Git::Git::@8fb704815aaca498baa2",
+					"jsonFile" : "target-Git__Git-Debug-de11830b1dd0877800e0.json",
+					"name" : "Git::Git",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "LibUSB::LibUSB::@8fb704815aaca498baa2",
+					"jsonFile" : "target-LibUSB__LibUSB-Debug-247e2d305b0eafc2d485.json",
+					"name" : "LibUSB::LibUSB",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3-collector::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3-collector-Debug-a0b32e72470160b1a19f.json",
+					"name" : "SDL3-collector",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_Headers::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3_Headers-Debug-7e42155be15f3b23f5f5.json",
+					"name" : "SDL3_Headers",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_test-collector::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3_test-collector-Debug-0b320e049c8dc5967524.json",
+					"name" : "SDL3_test-collector",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"jsonFile" : "directory-.-Debug-9ad1a58d4644cf6543fa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"build" : "vendored/SDL",
+					"jsonFile" : "directory-vendored.SDL-Debug-bdcbd5172f44d7444ad5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "vendored/SDL",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "vendored/libfixmath",
+					"jsonFile" : "directory-vendored.libfixmath-Debug-7f4885c425e0e3f82d11.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "vendored/libfixmath",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "vendored/libfixmatrix",
+					"jsonFile" : "directory-vendored.libfixmatrix-Debug-29baaa64bc4eb6d63fdb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "vendored/libfixmatrix",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "src",
+					"jsonFile" : "directory-src-Debug-c61fb49069c3d1aa76de.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src",
+					"targetIndexes" : 
+					[
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"directoryIndexes" : 
+					[
+						0,
+						4
+					],
+					"name" : "hello",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "SDL3",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "fixmath",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "fixmatrix",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3-shared::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3-shared-Debug-32900b5459bd3dae04df.json",
+					"name" : "SDL3-shared",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_test::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3_test-Debug-d9e92b425a09c912ae3d.json",
+					"name" : "SDL3_test",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL_uclibc::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL_uclibc-Debug-9a8c132e33fa690597c6.json",
+					"name" : "SDL_uclibc",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "fixmath::@9193204d0ebc9ac6d9a3",
+					"jsonFile" : "target-fixmath-Debug-4db37c4168721463c462.json",
+					"name" : "fixmath",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "fixmatrix::@4e024f4db5ab574ac6d1",
+					"jsonFile" : "target-fixmatrix-Debug-d177e84b94e9b2ae786f.json",
+					"name" : "fixmatrix",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "ray::@145eef247bfb46b6828c",
+					"jsonFile" : "target-ray-Debug-9b7171112f9d926f41ce.json",
+					"name" : "ray",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/stephen/Code/CRayTracer/build",
+		"source" : "/Users/stephen/Code/CRayTracer"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}

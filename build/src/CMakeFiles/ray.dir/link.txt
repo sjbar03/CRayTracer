@@ -1,0 +1,1 @@
+/usr/bin/cc -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/ray.dir/ray.c.o -o ../Debug/ray  -Wl,-rpath,/Users/stephen/Code/CRayTracer/build/Debug ../vendored/libfixmatrix/libfixmatrix.a ../vendored/libfixmath/libfixmath.a ../Debug/libSDL3.0.dylib ../vendored/libfixmatrix/libfixmatrix.a ../vendored/libfixmath/libfixmath.a
