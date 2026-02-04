@@ -2,7 +2,7 @@
 CC := gcc
 
 # ===== Project =====
-TARGET := main.exe
+TARGET := ray.exe
 BUILD  := build
 
 # Source layout

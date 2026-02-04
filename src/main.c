@@ -141,6 +141,10 @@ int main()
     pthread_t thread_window;
 
     pthread_create(&thread_window, NULL, &window, NULL);
+    // Wait for the window thread to create the window before starting graphics
+    while (frame.hwnd == NULL) {
+        Sleep(1);
+    }
     pthread_create(&thread_graphics, NULL, &graphics, NULL);
 
     pthread_join(thread_graphics, NULL);

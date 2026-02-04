@@ -130,6 +130,8 @@ int APIENTRY WinMain(HINSTANCE hInst, HINSTANCE hInstPrev, PSTR cmdline, int nCm
 
 void window_init()
 {
+    // Ensure we have the process HINSTANCE before registering/creating windows
+    hInstance = GetModuleHandle(NULL);
     WinMain(hInstance, NULL, NULL, SW_SHOWDEFAULT) ;
     return;
 }
