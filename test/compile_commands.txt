@@ -1,0 +1,2 @@
+gcc vec3_test.c ../lib/Fix.c ../lib/Vec3.c -o vectest && ./vectest
+gcc fix_test.c ../lib/Fix.c -o fixtest && ./fixtest

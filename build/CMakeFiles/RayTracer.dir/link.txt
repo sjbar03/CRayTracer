@@ -1,0 +1,1 @@
+/usr/bin/cc -g -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/RayTracer.dir/RayTracer.c.o CMakeFiles/RayTracer.dir/lib/Fix.c.o CMakeFiles/RayTracer.dir/lib/Vec3.c.o -o Debug/RayTracer  -Wl,-rpath,/Users/stephen/Code/RayTracer/build/Debug Debug/libSDL3.0.dylib

@@ -1,0 +1,174 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "Git::Git::@8fb704815aaca498baa2",
+					"jsonFile" : "target-Git__Git-Debug-de11830b1dd0877800e0.json",
+					"name" : "Git::Git",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "LibUSB::LibUSB::@8fb704815aaca498baa2",
+					"jsonFile" : "target-LibUSB__LibUSB-Debug-247e2d305b0eafc2d485.json",
+					"name" : "LibUSB::LibUSB",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3-collector::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3-collector-Debug-a0b32e72470160b1a19f.json",
+					"name" : "SDL3-collector",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_Headers::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3_Headers-Debug-7e42155be15f3b23f5f5.json",
+					"name" : "SDL3_Headers",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_test-collector::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3_test-collector-Debug-0b320e049c8dc5967524.json",
+					"name" : "SDL3_test-collector",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-9ad1a58d4644cf6543fa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"build" : "vendored/SDL",
+					"jsonFile" : "directory-vendored.SDL-Debug-bdcbd5172f44d7444ad5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "vendored/SDL",
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "RayTracer",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "SDL3",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "RayTracer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-RayTracer-Debug-753901f77ffed76abc77.json",
+					"name" : "RayTracer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3-shared::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3-shared-Debug-9405e736ae30e69f68c7.json",
+					"name" : "SDL3-shared",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL3_test::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL3_test-Debug-4a1660f36650bed7118f.json",
+					"name" : "SDL3_test",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "SDL_uclibc::@8fb704815aaca498baa2",
+					"jsonFile" : "target-SDL_uclibc-Debug-b62abf2386275bdcdeaf.json",
+					"name" : "SDL_uclibc",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/stephen/Code/RayTracer/build",
+		"source" : "/Users/stephen/Code/RayTracer"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}
