@@ -1,8 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/Users/stephen/Code/RayTracer/build/cmake_install.cmake",
-		"/Users/stephen/Code/RayTracer/build/vendored/SDL/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
