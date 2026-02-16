@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "../../Debug/libSDL3.0.dylib"
-  "../../Debug/libSDL3.dylib"
-  "../../Debug/libSDL3.pdb"
+  "../../libSDL3.0.dylib"
+  "../../libSDL3.dylib"
+  "../../libSDL3.pdb"
   ".0"
   "CMakeFiles/SDL3-shared.dir/cmake_pch.h.pch"
   "CMakeFiles/SDL3-shared.dir/cmake_pch.h.pch.d"

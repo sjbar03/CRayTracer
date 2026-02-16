@@ -3,21 +3,21 @@
 
 # compile C with /usr/bin/cc
 # compile OBJC with /usr/bin/cc
-C_DEFINES = -DDEBUG -DDLL_EXPORT -DSDL_BUILD_MAJOR_VERSION=3 -DSDL_BUILD_MICRO_VERSION=0 -DSDL_BUILD_MINOR_VERSION=5 -DUSING_GENERATED_CONFIG_H
+C_DEFINES = -DDLL_EXPORT -DSDL_BUILD_MAJOR_VERSION=3 -DSDL_BUILD_MICRO_VERSION=0 -DSDL_BUILD_MINOR_VERSION=5 -DUSING_GENERATED_CONFIG_H
 
-C_INCLUDES = -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-config-debug/build_config -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-revision -I/Users/stephen/Code/RayTracer/vendored/SDL/include -I/Users/stephen/Code/RayTracer/vendored/SDL/src -isystem /opt/homebrew/include/libusb-1.0
+C_INCLUDES = -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-config-/build_config -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-revision -I/Users/stephen/Code/RayTracer/vendored/SDL/include -I/Users/stephen/Code/RayTracer/vendored/SDL/src -isystem /opt/homebrew/include/libusb-1.0
 
-C_FLAGSarm64 = -g -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
+C_FLAGSarm64 =  -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
 
-C_FLAGS = -g -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
+C_FLAGS =  -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
 
-OBJC_DEFINES = -DDEBUG -DDLL_EXPORT -DSDL_BUILD_MAJOR_VERSION=3 -DSDL_BUILD_MICRO_VERSION=0 -DSDL_BUILD_MINOR_VERSION=5 -DUSING_GENERATED_CONFIG_H
+OBJC_DEFINES = -DDLL_EXPORT -DSDL_BUILD_MAJOR_VERSION=3 -DSDL_BUILD_MICRO_VERSION=0 -DSDL_BUILD_MINOR_VERSION=5 -DUSING_GENERATED_CONFIG_H
 
-OBJC_INCLUDES = -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-config-debug/build_config -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-revision -I/Users/stephen/Code/RayTracer/vendored/SDL/include -I/Users/stephen/Code/RayTracer/vendored/SDL/src -isystem /opt/homebrew/include/libusb-1.0
+OBJC_INCLUDES = -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-config-/build_config -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-revision -I/Users/stephen/Code/RayTracer/vendored/SDL/include -I/Users/stephen/Code/RayTracer/vendored/SDL/src -isystem /opt/homebrew/include/libusb-1.0
 
-OBJC_FLAGSarm64 = -g -std=gnu17 -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
+OBJC_FLAGSarm64 = -std=gnu17 -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
 
-OBJC_FLAGS = -g -std=gnu17 -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
+OBJC_FLAGS = -std=gnu17 -arch arm64 -fPIC -fvisibility=hidden -Wall -Wundef -Wfloat-conversion -fno-strict-aliasing -Wdocumentation -Wdocumentation-unknown-command -fcomment-block-commands=threadsafety -Wshadow -Wno-unused-local-typedefs -Wimplicit-fallthrough -fcolor-diagnostics -idirafter/Users/stephen/Code/RayTracer/vendored/SDL/src/video/khronos -Wno-error=deprecated-declarations -Wno-deprecated-declarations -D_REENTRANT -fobjc-arc
 
 # PCH options: vendored/SDL/CMakeFiles/SDL3-shared.dir/cmake_pch.h.pch_OPTIONS = -Winvalid-pch;-Xclang;-emit-pch;-Xclang;-include;-Xclang;/Users/stephen/Code/RayTracer/build/vendored/SDL/CMakeFiles/SDL3-shared.dir/cmake_pch.h;-x;c-header
 

@@ -2,15 +2,15 @@
 #include <SDL3/SDL_main.h>
 #include <stdio.h>
 #include "lib/Colors.h"
-
-#define WINDOW_HEIGHT 480
-#define WINDOW_WIDTH 640
+#include "Viewport.h"
+#include <pthread.h>
+#include "lib/RayRenderer.h"
 
 SDL_Window* gSDLWindow;
 SDL_Renderer* gSDLRenderer;
 SDL_Texture* gSDLTexture;
 static int gDone;
-uint16_t gFrameBuffer[WINDOW_HEIGHT * WINDOW_WIDTH];
+volatile uint16_t gFrameBuffer[WINDOW_HEIGHT * WINDOW_WIDTH];
 
 bool update()
 {
@@ -34,7 +34,7 @@ bool update()
 
     for (int i = 0; i < WINDOW_HEIGHT; i++)
     {
-        memcpy(pix + i*pitch, gFrameBuffer + i*WINDOW_WIDTH, WINDOW_WIDTH * sizeof(uint16_t));
+        memcpy(pix + i*pitch, (void *) gFrameBuffer + i*WINDOW_WIDTH, WINDOW_WIDTH * sizeof(uint16_t));
     }
 
     SDL_UnlockTexture(gSDLTexture);
@@ -63,7 +63,7 @@ void loop()
     }
     else
     {
-        render(SDL_GetTicks());
+        // render(SDL_GetTicks());
     }
 }
 
@@ -83,13 +83,18 @@ int main(int argc, char** argv)
         printf("Failed to create SDL components - exiting");
         return -1;
     }
-
+    
     gDone = 0;
+
+    pthread_t thread_ray;
+    pthread_create(&thread_ray, NULL, &entry, (void *) &gFrameBuffer);
 
     while(!gDone)
     {
         loop();
     }
+
+    pthread_kill(thread_ray, 0);
 
     SDL_DestroyTexture(gSDLTexture);
     SDL_DestroyRenderer(gSDLRenderer);

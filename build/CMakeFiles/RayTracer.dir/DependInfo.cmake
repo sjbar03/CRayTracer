@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/stephen/Code/RayTracer/RayTracer.c" "CMakeFiles/RayTracer.dir/RayTracer.c.o" "gcc" "CMakeFiles/RayTracer.dir/RayTracer.c.o.d"
   "/Users/stephen/Code/RayTracer/lib/Fix.c" "CMakeFiles/RayTracer.dir/lib/Fix.c.o" "gcc" "CMakeFiles/RayTracer.dir/lib/Fix.c.o.d"
+  "/Users/stephen/Code/RayTracer/lib/RayRenderer.c" "CMakeFiles/RayTracer.dir/lib/RayRenderer.c.o" "gcc" "CMakeFiles/RayTracer.dir/lib/RayRenderer.c.o.d"
   "/Users/stephen/Code/RayTracer/lib/Vec3.c" "CMakeFiles/RayTracer.dir/lib/Vec3.c.o" "gcc" "CMakeFiles/RayTracer.dir/lib/Vec3.c.o.d"
   )
 

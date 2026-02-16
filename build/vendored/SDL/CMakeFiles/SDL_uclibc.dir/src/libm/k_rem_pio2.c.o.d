@@ -1,7 +1,7 @@
 vendored/SDL/CMakeFiles/SDL_uclibc.dir/src/libm/k_rem_pio2.c.o: \
   /Users/stephen/Code/RayTracer/vendored/SDL/src/libm/k_rem_pio2.c \
   /Users/stephen/Code/RayTracer/vendored/SDL/src/SDL_internal.h \
-  /Users/stephen/Code/RayTracer/build/vendored/SDL/include-config-debug/build_config/SDL_build_config.h \
+  /Users/stephen/Code/RayTracer/build/vendored/SDL/include-config-/build_config/SDL_build_config.h \
   /Users/stephen/Code/RayTracer/vendored/SDL/include/SDL3/SDL_platform_defines.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityMacros.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include/AvailabilityVersions.h \

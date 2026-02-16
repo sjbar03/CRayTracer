@@ -1,25 +1,22 @@
-#include <stdint.h>
+#ifndef COLOR_H
+#define COLOR_H
 
-#define RED     0b1000001111100000
+#include <stdint.h>
+#include <stdbool.h>
+
+#define GREEN   0b1000001111100000
 #define BLUE    0b1111110000000000
-#define GREEN   0b1000000000011111
-#define PURPLE  0b1111111111100000
-#define TEAL    0b1111110000011111
-#define YELLOW  0b1000001111111111
-#define WHITE   0b1111111111111111
+#define RED     0b1000000000011111
+#define PURPLE  (RED | BLUE) 
+#define TEAL    (BLUE | GREEN)
+#define YELLOW  (RED | GREEN)
+#define WHITE   (RED | BLUE | GREEN) 
 
 #define BMASK   0b0111110000000000
-#define RMASK   0b0000001111100000
-#define GMASK   0b0000000000011111
+#define GMASK   0b0000001111100000
+#define RMASK   0b0000000000011111
 #define AMASK   0b1000000000000000
 
-uint16_t RGB_COLOR(uint8_t R, uint8_t G, uint8_t B, bool A)
-{
-    if(R >= 32 || B >= 32 || G >= 32)
-    {
-        return 0xFFFF;
-    }
+#define RGB_COLOR(R, G, B, A) ((A << 15) + ((B << 10) + (R << 5) + G))
 
-    uint16_t res = (A << 15) + ((B << 10) + (R << 5) + G);
-    return res;
-}
+#endif

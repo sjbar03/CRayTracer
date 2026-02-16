@@ -1,0 +1,168 @@
+=== Vec3 Test Bench ===
+
+-- addVec --
+  PASS  (1,2,3)+(4,5,6) .x
+  PASS  (1,2,3)+(4,5,6) .y
+  PASS  (1,2,3)+(4,5,6) .z
+  PASS  (-1,0,3.5)+(1,-2,-3.5) .x
+  PASS  (-1,0,3.5)+(1,-2,-3.5) .y
+  PASS  (-1,0,3.5)+(1,-2,-3.5) .z
+  PASS  (0,0,0)+(7,-3,0.5) .x
+  PASS  (0,0,0)+(7,-3,0.5) .y
+  PASS  (0,0,0)+(7,-3,0.5) .z
+
+-- accVec --
+  PASS  (1,2,3)+=(10,20,30) .x
+  PASS  (1,2,3)+=(10,20,30) .y
+  PASS  (1,2,3)+=(10,20,30) .z
+  PASS  (5,5,5)+=(-5,-5,-5) .x
+  PASS  (5,5,5)+=(-5,-5,-5) .y
+  PASS  (5,5,5)+=(-5,-5,-5) .z
+  PASS  (1,1,1)+=2*(0.5,0.5,0.5) .x
+  PASS  (1,1,1)+=2*(0.5,0.5,0.5) .y
+  PASS  (1,1,1)+=2*(0.5,0.5,0.5) .z
+
+-- dot --
+  PASS  (1,2,3).(4,5,6)
+  PASS  x.y orthogonal
+  PASS  (3,4,0).(3,4,0)=25
+  PASS  parallel opposite = -3
+  PASS  (0.5,0.5,0.5).(2,2,2)=3
+
+-- cross --
+  PASS  x cross y = z .x
+  PASS  x cross y = z .y
+  PASS  x cross y = z .z
+  PASS  y cross x = -z .x
+  PASS  y cross x = -z .y
+  PASS  y cross x = -z .z
+  PASS  y cross z = x .x
+  PASS  y cross z = x .y
+  PASS  y cross z = x .z
+  PASS  parallel cross = 0 .x
+  PASS  parallel cross = 0 .y
+  PASS  parallel cross = 0 .z
+  PASS  (1,2,3)x(4,5,6) .x
+  PASS  (1,2,3)x(4,5,6) .y
+  PASS  (1,2,3)x(4,5,6) .z
+
+-- L2 --
+  PASS  |(3,4,0)| = 5
+  PASS  |(1,0,0)| = 1
+  PASS  |(1,1,1)| = sqrt(3)
+  PASS  |(0,0,0)| = 0
+  PASS  |(10,20,30)|
+
+-- normalize --
+  PASS  norm(3,4,0) .x
+  PASS  norm(3,4,0) .y
+  PASS  norm(3,4,0) .z
+  PASS  norm(1,0,0) .x
+  PASS  norm(1,0,0) .y
+  PASS  norm(1,0,0) .z
+  PASS  norm(1,1,1) .x
+  PASS  norm(1,1,1) .y
+  PASS  norm(1,1,1) .z
+  PASS  norm(-3,4,0) .x
+  PASS  norm(-3,4,0) .y
+  PASS  norm(-3,4,0) .z
+  PASS  norm(5,12,0) len=1
+
+-- normalizeTo --
+  PASS  normTo(3,4,0) .x
+  PASS  normTo(3,4,0) .y
+  PASS  normTo(3,4,0) .z
+  PASS  orig unchanged .x
+  PASS  orig unchanged .y
+  PASS  orig unchanged .z
+  PASS  normTo(1,1,1) .x
+  PASS  normTo(1,1,1) .y
+  PASS  normTo(1,1,1) .z
+  PASS  normTo len=1
+
+========================
+Results: 66 passed, 0 failed, 66 total
+=== Fix.h Test Bench ===
+
+-- float2fix / fix2float --
+  PASS  float roundtrip 0.0000
+  PASS  float roundtrip 1.0000
+  PASS  float roundtrip -1.0000
+  PASS  float roundtrip 0.5000
+  PASS  float roundtrip -0.5000
+  PASS  float roundtrip 100.0000
+  PASS  float roundtrip -100.0000
+  PASS  float roundtrip 0.0010
+  PASS  float roundtrip 12345.6777
+
+-- int2fix / fix2int --
+  PASS  int roundtrip 0
+  PASS  int roundtrip 1
+  PASS  int roundtrip -1
+  PASS  int roundtrip 42
+  PASS  int roundtrip -42
+  PASS  int roundtrip 1000
+  PASS  int roundtrip -1000
+  PASS  int roundtrip 32767
+
+-- multfix --
+  PASS  multfix 2.00 * 3.00
+  PASS  multfix 0.50 * 0.50
+  PASS  multfix -1.00 * 5.00
+  PASS  multfix -3.00 * -4.00
+  PASS  multfix 0.00 * 100.00
+  PASS  multfix 1.00 * 1.00
+  PASS  multfix 10.50 * 3.20
+  FAIL  multfix 100.00 * 0.01: got 0.997925, expected 1.000000 (tol 0.002000)
+
+-- divfix --
+  PASS  divfix 6.00 / 3.00
+  PASS  divfix 1.00 / 2.00
+  PASS  divfix -8.00 / 4.00
+  PASS  divfix -6.00 / -3.00
+  PASS  divfix 10.00 / 0.10
+  PASS  divfix 0.00 / 5.00
+  PASS  divfix 1.00 / 1.00
+  PASS  divfix 100.00 / 10.00
+
+-- square --
+  PASS  square(0.00)
+  PASS  square(1.00)
+  PASS  square(-1.00)
+  PASS  square(2.00)
+  PASS  square(-3.00)
+  PASS  square(0.50)
+  PASS  square(10.00)
+  PASS  square(0.10)
+  PASS  square(50.00)
+
+-- rfixSqrt spot checks --
+  PASS  rfixSqrt(1.0000)
+  PASS  rfixSqrt(4.0000)
+  PASS  rfixSqrt(16.0000)
+  PASS  rfixSqrt(100.0000)
+  PASS  rfixSqrt(0.2500)
+  PASS  rfixSqrt(0.0100)
+  PASS  rfixSqrt(2.0000)
+  PASS  rfixSqrt(0) == 0
+  PASS  rfixSqrt(-1) == 0
+
+-- rfixSqrt sweep --
+  Worst error: 0.7751% at value 64524.007812
+  PASS  rfixSqrt sweep max error < 5%
+
+-- fixSqrt spot checks --
+  PASS  fixSqrt(1.0000)
+  PASS  fixSqrt(4.0000)
+  PASS  fixSqrt(16.0000)
+  PASS  fixSqrt(100.0000)
+  PASS  fixSqrt(0.2500)
+  PASS  fixSqrt(2.0000)
+  PASS  fixSqrt(9.0000)
+
+-- fixSqrt sweep --
+  Worst error: -0.7811% at value 64524.058594
+  PASS  fixSqrt sweep max error < 5%
+
+========================
+Results: 59 passed, 1 failed, 60 total

@@ -6,7 +6,7 @@ C_DEFINES =
 
 C_INCLUDES = -I/Users/stephen/Code/RayTracer/build/vendored/SDL/include-revision -I/Users/stephen/Code/RayTracer/vendored/SDL/include
 
-C_FLAGSarm64 = -g -arch arm64
+C_FLAGSarm64 =  -arch arm64
 
-C_FLAGS = -g -arch arm64
+C_FLAGS =  -arch arm64
 

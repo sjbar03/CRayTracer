@@ -217,6 +217,30 @@ lib/Fix.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/RayTracer.dir/build.make CMakeFiles/RayTracer.dir/lib/Fix.c.s
 .PHONY : lib/Fix.c.s
 
+lib/RayRenderer.o: lib/RayRenderer.c.o
+.PHONY : lib/RayRenderer.o
+
+# target to build an object file
+lib/RayRenderer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RayTracer.dir/build.make CMakeFiles/RayTracer.dir/lib/RayRenderer.c.o
+.PHONY : lib/RayRenderer.c.o
+
+lib/RayRenderer.i: lib/RayRenderer.c.i
+.PHONY : lib/RayRenderer.i
+
+# target to preprocess a source file
+lib/RayRenderer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RayTracer.dir/build.make CMakeFiles/RayTracer.dir/lib/RayRenderer.c.i
+.PHONY : lib/RayRenderer.c.i
+
+lib/RayRenderer.s: lib/RayRenderer.c.s
+.PHONY : lib/RayRenderer.s
+
+# target to generate assembly for a file
+lib/RayRenderer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RayTracer.dir/build.make CMakeFiles/RayTracer.dir/lib/RayRenderer.c.s
+.PHONY : lib/RayRenderer.c.s
+
 lib/Vec3.o: lib/Vec3.c.o
 .PHONY : lib/Vec3.o
 
@@ -259,6 +283,9 @@ help:
 	@echo "... lib/Fix.o"
 	@echo "... lib/Fix.i"
 	@echo "... lib/Fix.s"
+	@echo "... lib/RayRenderer.o"
+	@echo "... lib/RayRenderer.i"
+	@echo "... lib/RayRenderer.s"
 	@echo "... lib/Vec3.o"
 	@echo "... lib/Vec3.i"
 	@echo "... lib/Vec3.s"

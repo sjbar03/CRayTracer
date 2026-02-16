@@ -7,6 +7,13 @@ void addVec(Vec3 *r, Vec3 *a, Vec3 *b)
     r->z = a->z + b->z;
 }
 
+void subVec(Vec3 *r, Vec3 *a, Vec3 *b)
+{
+    r->x = a->x - b->x;
+    r->y = a->y - b->y;
+    r->z = a->z - b->z;
+}
+
 void accVec(Vec3 *a, Vec3 *b)
 {
     a->x = a->x + b->x;
@@ -45,4 +52,11 @@ void normalizeTo(Vec3 *a, Vec3 *b)
     b->x = multfix(a->x, invNorm);
     b->y = multfix(a->y, invNorm);
     b->z = multfix(a->z, invNorm);
+}
+
+void scale(Vec3 *a, fix15 s)
+{
+    a->x = multfix(a->x, s);
+    a->y = multfix(a->y, s);
+    a->z = multfix(a->z, s);
 }

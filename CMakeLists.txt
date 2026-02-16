@@ -14,6 +14,7 @@ add_executable(RayTracer WIN32
     RayTracer.c
     lib/Fix.c
     lib/Vec3.c
+    lib/RayRenderer.c
 )
 
 # Link to the actual SDL3 library.

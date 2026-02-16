@@ -1,3 +1,6 @@
+#ifndef FIX_H
+#define FIX_H
+
 #include <stdint.h>
 
 typedef signed int fix15; // 17.15 fixed point
@@ -12,6 +15,9 @@ typedef signed int fix15; // 17.15 fixed point
 #define divfix(a,b)     ((fix15)((((signed long long) (a)) << 15) / (b)))
 #define square(a)       (multfix(a, a))
 
+#define threehalfs ((fix15) 49152)
+#define half       ((fix15) 16384)
+
 /*
 Fixed point approximation of the reciprocal square root of a
 return 1/sqrt(a)
@@ -23,3 +29,5 @@ Fixed point approximation of the square root of a
 Uses one divide.
 */
 fix15 fixSqrt(fix15 a);
+
+#endif

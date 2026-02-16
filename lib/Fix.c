@@ -1,7 +1,5 @@
 #include "Fix.h"
 
-#define threehalfs ((fix15) 49152)
-#define half       ((fix15) 16384)
 #define PRECISION  5
 
 fix15 rfixSqrt(fix15 a)

@@ -1,3 +1,6 @@
+#ifndef VEC3_H
+#define VEC3_H
+
 #include "Fix.h"
 
 typedef struct {
@@ -13,6 +16,12 @@ add vectors a and b and store them in r
 r = a + b
 */
 void addVec(Vec3 *r, Vec3 *a, Vec3 *b);
+
+/*
+subtract vectors a and b and store them in r
+r = a - b
+*/
+void subVec(Vec3 *r, Vec3 *a, Vec3 *b);
 
 /*
 add value of b to a and store in a
@@ -48,3 +57,10 @@ void normalize(Vec3 *a);
 Normalize vector a, store in r
 */
 void normalizeTo(Vec3 *r, Vec3 *a);
+
+/*
+Scale vector a by scalar s, store in a
+*/
+void scale(Vec3 *a, fix15 s);
+
+#endif
