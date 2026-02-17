@@ -34,7 +34,7 @@ bool update()
 
     for (int i = 0; i < WINDOW_HEIGHT; i++)
     {
-        memcpy(pix + i*pitch, (void *) gFrameBuffer + i*WINDOW_WIDTH, WINDOW_WIDTH * sizeof(uint16_t));
+        memcpy(pix + i*pitch, (uint16_t *) gFrameBuffer + i*WINDOW_WIDTH, WINDOW_WIDTH * sizeof(uint16_t));
     }
 
     SDL_UnlockTexture(gSDLTexture);
