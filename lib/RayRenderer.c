@@ -82,6 +82,7 @@ void trace(uint16_t *frame_buffer, int x, int y, Vec3 *vp_pixel)
 void *entry(void *frame_buffer)
 {
     uint16_t *fb = (uint16_t *) frame_buffer;
+    int dir = 0;
 
     while(1)
     {
@@ -101,6 +102,24 @@ void *entry(void *frame_buffer)
             }
             addVec(&row_start, &row_start, &vp_dv);
         }
-        // addVec(&camera, &camera, &cam_step);
+
+        if (camera.z > two)
+        {
+            dir = 0;
+        }
+        else if (camera.z < n_two)
+        {
+            dir = 1;
+        }
+        
+        if (dir)
+        {
+            addVec(&camera, &camera, &cam_step);
+        }
+        else
+        {
+            subVec(&camera, &camera, &cam_step);
+        }
+        
     }
 }
