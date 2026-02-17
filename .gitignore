@@ -16,3 +16,6 @@ test/test
 *.swo
 *~
 .DS_Store
+
+# Vendored deps
+vendored/
