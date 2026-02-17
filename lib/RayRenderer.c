@@ -36,7 +36,7 @@ Sphere sp = {&sp_center, int2fix(2), red};
 
 Vec3 cam_step = {0, 0, float2fix(0.01)};
 
-uint16_t linear_interpolate_color(color_t C1, color_t C2, fix15 t)
+raw_color_t linear_interpolate_color(color_t C1, color_t C2, fix15 t)
 {
     fix15 j = one - t;
     color_t res;
@@ -49,7 +49,7 @@ uint16_t linear_interpolate_color(color_t C1, color_t C2, fix15 t)
     return ENCODE(res);
 }
 
-uint16_t ray_color(int x, int y)
+raw_color_t ray_color(int x, int y)
 {
     color_t C1 = white;
     color_t C2 = skyblue;
@@ -60,7 +60,7 @@ uint16_t ray_color(int x, int y)
 
 }
 
-void trace(uint16_t *frame_buffer, int x, int y, Vec3 *vp_pixel)
+void trace(raw_color_t *frame_buffer, int x, int y, Vec3 *vp_pixel)
 {
     Ray ray = {&camera, vp_pixel, 0};
     fix15 t = ray_sphere_intersect(&ray, &sp);
@@ -69,7 +69,7 @@ void trace(uint16_t *frame_buffer, int x, int y, Vec3 *vp_pixel)
         Vec3 hit = ray_at(&ray, t);
         Vec3 n = sphere_normal(&hit, &sp);
 
-        uint16_t color = linear_interpolate_color(white, gray, n.y);
+        raw_color_t color = linear_interpolate_color(white, gray, n.y);
 
         frame_buffer[x + (y * WINDOW_WIDTH)] = color;
     }
@@ -81,7 +81,7 @@ void trace(uint16_t *frame_buffer, int x, int y, Vec3 *vp_pixel)
 
 void *entry(void *frame_buffer)
 {
-    uint16_t *fb = (uint16_t *) frame_buffer;
+    raw_color_t *fb = (raw_color_t *) frame_buffer;
     int dir = 0;
 
     while(1)

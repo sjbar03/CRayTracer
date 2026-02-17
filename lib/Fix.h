@@ -20,6 +20,7 @@ typedef signed int fix15; // 17.15 fixed point
 #define one        ((fix15) 32768)
 #define n_one      ((fix15) -32768)
 #define thirty_one ((fix15) 1015808)
+#define tentwentythree ((fix15) 33554432)
 #define two        ((fix15) 65536)
 #define n_two      ((fix15) -65536)
 #define four       ((fix15) 131072)

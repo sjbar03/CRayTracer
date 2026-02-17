@@ -47,7 +47,14 @@ fix15 ray_sphere_intersect(Ray *ray, Sphere *sphere)
     }
     else
     {
-        return divfix(-b - fixSqrt(disc), multfix(two, a)); 
+        fix15 two_a = multfix(two, a);
+        fix15 sqrt_disc = fixSqrt(disc);
+        fix15 t1 = divfix(-b - sqrt_disc, two_a);
+        fix15 t2 = divfix(-b + sqrt_disc, two_a);
+
+        if (t1 > 0) return t1;  // Closest hit in front of camera
+        if (t2 > 0) return t2;  // Ray origin inside sphere
+        return int2fix(-1);     // Both behind camera
     }
 }
 

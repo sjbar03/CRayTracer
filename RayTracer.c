@@ -10,7 +10,7 @@ SDL_Window* gSDLWindow;
 SDL_Renderer* gSDLRenderer;
 SDL_Texture* gSDLTexture;
 static int gDone;
-volatile uint16_t gFrameBuffer[WINDOW_HEIGHT * WINDOW_WIDTH];
+volatile raw_color_t gFrameBuffer[WINDOW_HEIGHT * WINDOW_WIDTH];
 
 bool update()
 {
@@ -34,7 +34,7 @@ bool update()
 
     for (int i = 0; i < WINDOW_HEIGHT; i++)
     {
-        memcpy(pix + i*pitch, (uint16_t *) gFrameBuffer + i*WINDOW_WIDTH, WINDOW_WIDTH * sizeof(uint16_t));
+        memcpy(pix + i*pitch, (raw_color_t *) gFrameBuffer + i*WINDOW_WIDTH, WINDOW_WIDTH * sizeof(raw_color_t));
     }
 
     SDL_UnlockTexture(gSDLTexture);
@@ -76,7 +76,7 @@ int main(int argc, char** argv)
 
     gSDLWindow = SDL_CreateWindow("My Window", WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     gSDLRenderer = SDL_CreateRenderer(gSDLWindow, NULL);
-    gSDLTexture = SDL_CreateTexture(gSDLRenderer, SDL_PIXELFORMAT_ABGR1555, SDL_TEXTUREACCESS_STREAMING, WINDOW_WIDTH, WINDOW_HEIGHT); // 16 bit color - I believe
+    gSDLTexture = SDL_CreateTexture(gSDLRenderer, COLOR_FORMAT, SDL_TEXTUREACCESS_STREAMING, WINDOW_WIDTH, WINDOW_HEIGHT); // 16 bit color - I believe
 
     if(!gSDLWindow || !gSDLRenderer || !gSDLTexture)
     {
