@@ -1,4 +1,5 @@
 #include "Fix.h"
+#include <stdlib.h>
 
 #define PRECISION  5
 
@@ -47,4 +48,15 @@ fix15 fixSqrt(fix15 a)
 {
     if (a <= 0) return 0;
     return divfix(int2fix(1), rfixSqrt(a));
+}
+
+fix15 randomFix(fix15 lo, fix15 hi)
+{
+    int range = hi - lo + 1;
+    return (fix15) (lo + (rand() % range));
+}
+
+fix15 randomFixAll()
+{
+    return rand();
 }

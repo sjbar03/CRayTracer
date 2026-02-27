@@ -63,4 +63,14 @@ Scale vector a by scalar s, store in a
 */
 void scale(Vec3 *a, fix15 s);
 
+/*
+Find any vector orthogonal to non-zero n
+*/
+void findOrthogonal(Vec3 *r, Vec3 *n);
+
+/*
+Generate random vector pointing away from surface (given normal)
+*/
+void randomSurf(Vec3 *r, Vec3 *n);
+
 #endif

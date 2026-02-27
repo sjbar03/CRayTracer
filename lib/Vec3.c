@@ -1,4 +1,7 @@
 #include "Vec3.h"
+#include <math.h>
+#include <assert.h>
+#include <stdlib.h>
 
 void addVec(Vec3 *r, Vec3 *a, Vec3 *b)
 {
@@ -41,6 +44,7 @@ void cross(Vec3 *r, Vec3 *a, Vec3 *b)
 void normalize(Vec3 *a)
 {
     fix15 invNorm = rfixSqrt(square(a->x) + square(a->y) + square(a->z));
+
     a->x = multfix(a->x, invNorm);
     a->y = multfix(a->y, invNorm);
     a->z = multfix(a->z, invNorm);
@@ -59,4 +63,43 @@ void scale(Vec3 *a, fix15 s)
     a->x = multfix(a->x, s);
     a->y = multfix(a->y, s);
     a->z = multfix(a->z, s);
+}
+
+void findOrthogonal(Vec3 *r, Vec3 *n)
+{
+    assert(!(n->x == 0 && n->y == 0 && n->z == 0));
+
+    fix15 nx = abs(n->x);
+    fix15 ny = abs(n->y);
+    fix15 nz = abs(n->z);
+
+    if (nx <= ny && nx <= nz) { *r = (Vec3) {0, n->z, -n->y}; }
+    else if (ny <= nz)        { *r = (Vec3) {-n->z, 0, n->x}; }
+    else                      { *r = (Vec3) {n->y, -n->x, 0}; }
+
+    // assert(dot(r, n) == 0); // make sure dot product is zero
+    // assert(!(r->x == 0 && r->y == 0 && r->z == 0));
+}
+
+void randomSurf(Vec3 *r, Vec3 *n)
+{
+    assert(!(n->x == 0 && n->y == 0 && n->z == 0));
+
+    Vec3 o1; findOrthogonal(&o1, n);
+    Vec3 o2; cross(&o2, &o1, n);
+
+    // Now we have orthogonal basis for the plane normal to n
+
+    fix15 a = randomFix(int2fix(0.001) , one); // to prevent 0
+    fix15 b = randomFix(n_one, one);
+    fix15 c = randomFix(n_one, one);
+
+    // linearally combine n, o1, and o2 with positive a coefficient
+    // find random vector pointing in general direction of n (away from surface normal)
+    *r = (Vec3) {
+        multfix(a, n->x) + multfix(b, o1.x) + multfix(c, o2.x),
+        multfix(a, n->y) + multfix(b, o1.y) + multfix(c, o2.y),
+        multfix(a, n->z) + multfix(b, o1.z) + multfix(c, o2.z),
+    };
+
 }

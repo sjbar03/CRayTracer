@@ -37,4 +37,11 @@ Uses one divide.
 */
 fix15 fixSqrt(fix15 a);
 
+/*
+Generate random fixed point value in a range
+*/
+fix15 randomFix(fix15 lo, fix15 hi);
+fix15 randomFixAll();
+
+
 #endif
