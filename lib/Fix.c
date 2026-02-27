@@ -45,5 +45,6 @@ fix15 rfixSqrt(fix15 a)
 
 fix15 fixSqrt(fix15 a)
 {
+    if (a <= 0) return 0;
     return divfix(int2fix(1), rfixSqrt(a));
 }

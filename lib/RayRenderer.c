@@ -36,7 +36,7 @@ Sphere sp = {&sp_center, int2fix(2), red};
 
 Vec3 cam_step = {0, 0, float2fix(0.01)};
 
-raw_color_t linear_interpolate_color(color_t C1, color_t C2, fix15 t)
+color_t linear_interpolate_color(color_t C1, color_t C2, fix15 t)
 {
     fix15 j = one - t;
     color_t res;
@@ -46,45 +46,46 @@ raw_color_t linear_interpolate_color(color_t C1, color_t C2, fix15 t)
     res.B = multfix(t, C1.B) + multfix(j, C2.B);
     res.A = C1.A & C2.A;
 
-    return ENCODE(res);
+    return res;
 }
 
-raw_color_t ray_color(int x, int y)
+// color_t ray_color(int x, int y)
+// {
+//     color_t C1 = white;
+//     color_t C2 = skyblue;
+
+//     fix15 t = divfix(int2fix(y), int2fix(WINDOW_HEIGHT));
+
+//     return linear_interpolate_color(C1, C2, t);
+
+// }
+
+color_t ray_color(Ray *ray)
 {
-    color_t C1 = white;
-    color_t C2 = skyblue;
+    fix15 t = ray_sphere_intersect(ray, &sp);
 
-    fix15 t = divfix(int2fix(y), int2fix(WINDOW_HEIGHT));
+    if (t>=0) {
+        Vec3 hp = ray_at(ray, t);
+        Vec3 n = sphere_normal(&hp, &sp);
+        normalize(&n);
 
-    return linear_interpolate_color(C1, C2, t);
+        return linear_interpolate_color(white, gray, n.y);
+    }
 
+    return black;
 }
 
-void trace(raw_color_t *frame_buffer, int x, int y, Vec3 *vp_pixel)
+color_t trace(Ray *ray)
 {
-    Ray ray = {&camera, vp_pixel, 0};
-    fix15 t = ray_sphere_intersect(&ray, &sp);
-    if (t >= 0)
-    {
-        Vec3 hit = ray_at(&ray, t);
-        Vec3 n = sphere_normal(&hit, &sp);
-
-        raw_color_t color = linear_interpolate_color(white, gray, n.y);
-
-        frame_buffer[x + (y * WINDOW_WIDTH)] = color;
-    }
-    else
-    {
-        frame_buffer[x + (y * WINDOW_WIDTH)] = ENCODE(skyblue);
-    }
+    return ray_color(ray);
 }
 
 void *entry(void *frame_buffer)
 {
     raw_color_t *fb = (raw_color_t *) frame_buffer;
-    int dir = 0;
+    // int dir = 0;
 
-    while(1)
+    while(!gDone)
     {
         addVec(&vp_upper_left, &camera, &focal_vec);
         subVec(&vp_upper_left, &vp_upper_left, &vp_ud2);
@@ -97,29 +98,37 @@ void *entry(void *frame_buffer)
             vp_pixel = row_start;
             for (int x = 0; x < WINDOW_WIDTH; x++)
             {
-                trace(fb, x, y, &vp_pixel);
+                Ray r = {
+                    &camera,
+                    &vp_pixel,
+                    0
+                };
+
+                fb[x + (y * WINDOW_WIDTH)] = ENCODE(trace(&r));
                 addVec(&vp_pixel, &vp_pixel, &vp_du);
             }
             addVec(&row_start, &row_start, &vp_dv);
         }
 
-        if (camera.z > two)
-        {
-            dir = 0;
-        }
-        else if (camera.z < n_two)
-        {
-            dir = 1;
-        }
+    //     if (camera.z > two)
+    //     {
+    //         dir = 0;
+    //     }
+    //     else if (camera.z < n_two)
+    //     {
+    //         dir = 1;
+    //     }
         
-        if (dir)
-        {
-            addVec(&camera, &camera, &cam_step);
-        }
-        else
-        {
-            subVec(&camera, &camera, &cam_step);
-        }
+    //     if (dir)
+    //     {
+    //         addVec(&camera, &camera, &cam_step);
+    //     }
+    //     else
+    //     {
+    //         subVec(&camera, &camera, &cam_step);
+    //     }
         
     }
+
+    return NULL;
 }

@@ -5,17 +5,18 @@
 #include "Viewport.h"
 #include <pthread.h>
 #include "lib/RayRenderer.h"
+#include <signal.h>
 
 SDL_Window* gSDLWindow;
 SDL_Renderer* gSDLRenderer;
 SDL_Texture* gSDLTexture;
-static int gDone;
+volatile sig_atomic_t gDone;
 volatile raw_color_t gFrameBuffer[WINDOW_HEIGHT * WINDOW_WIDTH];
 
 bool update()
 {
     SDL_Event e;
-    if (SDL_PollEvent(&e))
+    while (SDL_PollEvent(&e))
     {
         if (e.type == SDL_EVENT_QUIT)
         {
@@ -94,7 +95,7 @@ int main(int argc, char** argv)
         loop();
     }
 
-    pthread_kill(thread_ray, 0);
+    pthread_join(thread_ray, NULL);
 
     SDL_DestroyTexture(gSDLTexture);
     SDL_DestroyRenderer(gSDLRenderer);
