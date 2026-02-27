@@ -80,8 +80,15 @@
   PASS  normTo(1,1,1) .z
   PASS  normTo len=1
 
+-- findOrthogonal --
+  PASS  Orthogonal (1.0, 0, 0)
+  PASS  Orthogonal (0, 1.0, 0)
+  PASS  Orthogonal (0, 0, 1.0)
+  PASS  Orthogonal (0.512909f, 8620.460938f, 49519.351562f)
+  PASS  Random Orthogonal
+
 ========================
-Results: 66 passed, 0 failed, 66 total
+Results: 71 passed, 0 failed, 71 total
 === Fix.h Test Bench ===
 
 -- float2fix / fix2float --

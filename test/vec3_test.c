@@ -1,6 +1,7 @@
 #include "../lib/Vec3.h"
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 // ---- test infrastructure ----
 
@@ -10,6 +11,10 @@ static int tests_failed = 0;
 
 #define PASS(name) do { tests_run++; tests_passed++; printf("  PASS  %s\n", name); } while(0)
 #define FAIL(name, fmt, ...) do { tests_run++; tests_failed++; printf("  FAIL  %s: " fmt "\n", name, __VA_ARGS__); } while(0)
+
+#define PRINT_VEC(v) do { \
+    printf("( %f, %f, %f )\n", fix2float(v.x), fix2float(v.y), fix2float(v.z)); \
+} while(0);
 
 #define ASSERT_NEAR(name, actual, expected, tol) do { \
     float _a = (actual), _e = (expected), _t = (tol); \
@@ -255,6 +260,64 @@ void test_normalizeTo()
     ASSERT_NEAR("normTo len=1", len, 1.0f, 0.1f);
 }
 
+void test_findOrthogonal()
+{
+    printf("\n-- findOrthogonal --\n");
+
+    Vec3 a, r;
+    fix15 res;
+
+    a = v3(1.0f, 0.0f, 0.0f);
+    findOrthogonal(&r, &a);
+    res = dot(&a, &r);
+    if (res == 0) {PASS("Orthogonal (1.0, 0, 0)"); }
+    else { FAIL("Orthogonal (1.0, 0, 0)", "got %f expected %f", fix2float(res), 0.0f); }
+
+    a = v3(0.0f, 1.0f, 0.0f);
+    findOrthogonal(&r, &a);
+    res = dot(&a, &r);
+    if (res == 0) {PASS("Orthogonal (0, 1.0, 0)"); }
+    else { FAIL("Orthogonal (0, 1.0, 0)", "got %f expected %f", fix2float(res), 0.0f); }
+
+    a = v3(0.0f, 0.0f, 1.0f);
+    findOrthogonal(&r, &a);
+    res = dot(&a, &r);
+    if (res == 0) {PASS("Orthogonal (0, 0, 1.0)"); }
+    else { FAIL("Orthogonal (0, 0, 1.0)", "got %f expected %f", fix2float(res), 0.0f); }
+
+    a = v3( 0.512909f, 8620.460938f, 49519.351562f );
+    findOrthogonal(&r, &a);
+    res = dot(&a, &r);
+    if (res == 0) { PASS("Orthogonal (0.512909f, 8620.460938f, 49519.351562f)"); }
+    else { 
+        FAIL("Orthogonal (0.512909f, 8620.460938f, 49519.351562f)", "got (%f, %f, %f) with dot %f", fix2float(r.x), fix2float(r.y), fix2float(r.z), fix2float(res));
+    }
+
+    int passed = 0;
+    int failed = 0;
+    Vec3 failed_arr[100];
+
+    for(int i = 0; i < 100; i++)
+    {
+        a = (Vec3) {randomFixAll(), randomFixAll(), randomFixAll()};
+        findOrthogonal(&r, &a);
+        res = dot(&a, &r);
+        if (abs(res) <= float2fix(0.0005)) { passed ++ ; }
+        else { failed_arr[failed] = a; failed++ ; };
+    }
+
+    if(failed == 0) {
+        PASS("Random Orthogonal");
+    }
+    else {
+        FAIL("Random Orthogonal", "Failed %d random tests. ", failed); 
+        for (int i = 0; i < failed; i++)
+        {
+            PRINT_VEC(failed_arr[i]);
+        }
+    }
+}
+
 // ---- main ----
 
 int main()
@@ -268,6 +331,7 @@ int main()
     test_L2();
     test_normalize();
     test_normalizeTo();
+    test_findOrthogonal();
 
     printf("\n========================\n");
     printf("Results: %d passed, %d failed, %d total\n", tests_passed, tests_failed, tests_run);
