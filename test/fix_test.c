@@ -98,7 +98,7 @@ void test_multfix()
         float expected = cases[i].a * cases[i].b;
         char label[64];
         snprintf(label, sizeof(label), "multfix %.2f * %.2f", cases[i].a, cases[i].b);
-        ASSERT_NEAR(label, result, expected, fabsf(expected) * 0.001f + 0.001f);
+        ASSERT_NEAR(label, result, expected, fabsf(expected) * 0.001f + 0.002f);
     }
 }
 

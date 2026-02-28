@@ -1,4 +1,4 @@
 rm results.txt
 gcc vec3_test.c ../lib/Fix.c ../lib/Vec3.c -o vectest && ./vectest >> results.txt
-gcc fix_test.c ../lib/Fix.c -o fixtest && ./fixtest >> results.txt
+gcc fix_test.c ../lib/Fix.c -o fixtest -lm && ./fixtest >> results.txt
 less results.txt

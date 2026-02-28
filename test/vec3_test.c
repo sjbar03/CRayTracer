@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <assert.h>
 
 // ---- test infrastructure ----
 
@@ -318,6 +319,25 @@ void test_findOrthogonal()
     }
 }
 
+void test_random()
+{
+    for (int i = 0; i < 100; i++)
+    {
+        Vec3 r = randomvec();
+
+        if(r.x == 0 && r.y == 0 && r.z == 0)
+        {
+            FAIL("random vector", "got all %d", 0);
+        }
+        if(!(abs(r.x) <= one || abs(r.y) <= one || abs(r.z) <= 1))
+        {
+            FAIL("random vector", "got x: %f, y: %f, z: %f", fix2float(r.x), fix2float(r.y), fix2float(r.z));
+        }
+    }
+
+    PASS("random vector");
+}
+
 // ---- main ----
 
 int main()
@@ -332,6 +352,7 @@ int main()
     test_normalize();
     test_normalizeTo();
     test_findOrthogonal();
+    test_random();
 
     printf("\n========================\n");
     printf("Results: %d passed, %d failed, %d total\n", tests_passed, tests_failed, tests_run);

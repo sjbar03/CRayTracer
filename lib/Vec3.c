@@ -2,6 +2,7 @@
 #include <math.h>
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void addVec(Vec3 *r, Vec3 *a, Vec3 *b)
 {
@@ -43,6 +44,9 @@ void cross(Vec3 *r, Vec3 *a, Vec3 *b)
 
 void normalize(Vec3 *a)
 {
+    // printVec((*a));
+    assert(abs(a->x) < int2fix(128) && abs(a->y) < int2fix(128) && abs(a->z) < int2fix(128)); // assert overflow won't happen
+
     fix15 invNorm = rfixSqrt(square(a->x) + square(a->y) + square(a->z));
 
     a->x = multfix(a->x, invNorm);
@@ -63,6 +67,51 @@ void scale(Vec3 *a, fix15 s)
     a->x = multfix(a->x, s);
     a->y = multfix(a->y, s);
     a->z = multfix(a->z, s);
+}
+
+Vec3 randomvec()
+{
+    Vec3 r;
+    
+    uint8_t signs = rand();
+
+    do {
+        r = (Vec3) {
+                (fix15) (((int32_t) rand()) >> 16),
+                (fix15) (((int32_t) rand()) >> 16),
+                (fix15) (((int32_t) rand()) >> 16),
+            };
+    } while (r.x == 0 && r.y == 0 && r.z == 0);
+
+    if (signs & 0x1) r.x = multfix(r.x, n_one);
+    if (signs & 0x2) r.y = multfix(r.y, n_one);
+    if (signs & 0x4) r.z = multfix(r.z, n_one);
+
+    return r;
+}
+
+Vec3 random_unit_vector()
+{
+    while(1)
+    {
+        Vec3 p = randomvec();
+        fix15 lensq = dot(&p, &p);
+
+        if ((float2fix(0.001) < lensq) && (lensq <= one)) {
+            normalize(&p);
+            return p;
+        }
+    }
+}
+
+Vec3 random_on_hemisphere(Vec3 *normal)
+{
+    Vec3 p = random_unit_vector();
+
+    if (dot(&p, normal) > 0) return p; // on hemisphere
+
+    scale(&p, n_one);
+    return p;
 }
 
 void findOrthogonal(Vec3 *r, Vec3 *n)

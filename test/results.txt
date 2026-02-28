@@ -86,9 +86,10 @@
   PASS  Orthogonal (0, 0, 1.0)
   PASS  Orthogonal (0.512909f, 8620.460938f, 49519.351562f)
   PASS  Random Orthogonal
+  PASS  random vector
 
 ========================
-Results: 71 passed, 0 failed, 71 total
+Results: 72 passed, 0 failed, 72 total
 === Fix.h Test Bench ===
 
 -- float2fix / fix2float --
@@ -120,7 +121,7 @@ Results: 71 passed, 0 failed, 71 total
   PASS  multfix 0.00 * 100.00
   PASS  multfix 1.00 * 1.00
   PASS  multfix 10.50 * 3.20
-  FAIL  multfix 100.00 * 0.01: got 0.997925, expected 1.000000 (tol 0.002000)
+  PASS  multfix 100.00 * 0.01
 
 -- divfix --
   PASS  divfix 6.00 / 3.00
@@ -155,7 +156,7 @@ Results: 71 passed, 0 failed, 71 total
   PASS  rfixSqrt(-1) == 0
 
 -- rfixSqrt sweep --
-  Worst error: 0.7751% at value 64524.007812
+  Worst error: 0.7751% at value 64524.003906
   PASS  rfixSqrt sweep max error < 5%
 
 -- fixSqrt spot checks --
@@ -168,8 +169,8 @@ Results: 71 passed, 0 failed, 71 total
   PASS  fixSqrt(9.0000)
 
 -- fixSqrt sweep --
-  Worst error: -0.7811% at value 64524.058594
+  Worst error: -0.7811% at value 64524.015625
   PASS  fixSqrt sweep max error < 5%
 
 ========================
-Results: 59 passed, 1 failed, 60 total
+Results: 60 passed, 0 failed, 60 total

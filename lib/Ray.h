@@ -28,34 +28,18 @@ Vec3 direction(Ray *ray)
 
 fix15 ray_sphere_intersect(Ray *ray, Sphere *sphere)
 {
-    Vec3 ray_dir = direction(ray);
+    Vec3 oc; subVec(&oc, sphere->center, ray->origin);
 
-    Vec3 oc;
-    subVec(&oc, sphere->center, ray->origin);
+    Vec3 dir = direction(ray);
+    normalize(&dir);
 
-    fix15 a = dot(&ray_dir, &ray_dir);
-    fix15 b_intermediate = dot(&ray_dir, &oc);
-    fix15 b = multfix(n_two, b_intermediate);
+    fix15 h = dot(&dir, &oc);
     fix15 c = dot(&oc, &oc) - square(sphere->radius);
-    fix15 ac = multfix(a, c);
+    fix15 disc = square(h) - c;
 
-    fix15 disc = square(b) - multfix(ac, four);
-
-    if (disc < 0 || b_intermediate < 0)
-    {
-        return int2fix(-1);
-    }
-    else
-    {
-        fix15 two_a = multfix(two, a);
-        fix15 sqrt_disc = fixSqrt(disc);
-        fix15 t1 = divfix(-b - sqrt_disc, two_a);
-        fix15 t2 = divfix(-b + sqrt_disc, two_a);
-
-        if (t1 > 0) return t1;  // Closest hit in front of camera
-        if (t2 > 0) return t2;  // Ray origin inside sphere
-        return int2fix(-1);     // Both behind camera
-    }
+    if (disc < 0) return n_one;
+    
+    return h - fixSqrt(disc);
 }
 
 Vec3 sphere_normal(Vec3 *x, Sphere *sp)

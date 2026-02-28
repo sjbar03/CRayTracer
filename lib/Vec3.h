@@ -64,6 +64,15 @@ Scale vector a by scalar s, store in a
 void scale(Vec3 *a, fix15 s);
 
 /*
+Return a random vector with values in the range -1 - 1
+*/
+Vec3 randomvec();
+
+Vec3 random_unit_vector();
+
+Vec3 random_on_hemisphere(Vec3 *normal);
+
+/*
 Find any vector orthogonal to non-zero n
 */
 void findOrthogonal(Vec3 *r, Vec3 *n);
