@@ -11,18 +11,18 @@
 #include "../Viewport.h"
 #include <stdio.h>
 
-#define RAY_PER_PX 100 
-#define REFLECT_DPTH 5
+#define RAY_PER_PX 20
+#define REFLECT_DPTH 20
 
 const fix15 image_height = int2fix(WINDOW_HEIGHT);
 const fix15 image_width = int2fix(WINDOW_WIDTH);
 const fix15 aspect_ratio = divfix(image_width, image_height);
 
-const fix15 focal_length = int2fix(1.0);
+const fix15 focal_length = float2fix(1.5);
 const fix15 vp_height = float2fix(2.0);
 const fix15 vp_width = multfix(vp_height, aspect_ratio);
 
-Vec3 camera = {int2fix(3),0,0};
+Vec3 camera = {0, 0, int2fix(5)};
 Vec3 focal_vec = {0, 0, -focal_length};
 
 Vec3 vp_ud2 = {multfix(half, vp_width), 0, 0};
@@ -38,7 +38,7 @@ Vec3 sp1_center = {0,0,int2fix(-5)};
 const Sphere sp1 = {&sp1_center, int2fix(2), skyblue};
 
 Vec3 sp2_center = {0, int2fix(-100), int2fix(-10)};
-const Sphere sp2 = {&sp2_center, int2fix(97), gray};
+const Sphere sp2 = {&sp2_center, float2fix(98.0), gray};
 
 Sphere sps[2] = {sp1, sp2};
 
@@ -77,6 +77,23 @@ color_t add_color(color_t in1, color_t in2)
     };
 }
 
+color_t gamma_correct(color_t c)
+{
+    if (c.R < 0) c.R = 0;
+    if (c.G < 0) c.G = 0;
+    if (c.B < 0) c.B = 0;
+
+    if (c.R > one) c.R = one;
+    if (c.G > one) c.G = one;
+    if (c.B > one) c.B = one;
+
+    c.R = fixSqrt(c.R);
+    c.G = fixSqrt(c.G);
+    c.B = fixSqrt(c.B);
+
+    return c;
+}
+
 // color_t ray_color(int x, int y)
 // {
 //     color_t C1 = white;
@@ -98,12 +115,14 @@ color_t ray_color(Ray *ray, int depth)
         
         fix15 t = ray_sphere_intersect(ray, &sp);
         
-        if (t>=0) {
+        if (t >= float2fix(0.001)) {
+
             Vec3 hp = ray_at(ray, t);
             Vec3 n = sphere_normal(&hp, &sp);
             normalize(&n);
 
             Vec3 rv = random_on_hemisphere(&n); 
+            addVec(&rv, &rv, &n);
             addVec(&rv, &rv, &hp); // make new target in this direction
 
             Ray rr = {&hp, &rv, 0};
@@ -118,7 +137,7 @@ color_t ray_color(Ray *ray, int depth)
     normalize(&uv);
 
     fix15 a = multfix(half, uv.y + one);
-    return linear_interpolate_color(babyblue, white, a);
+    return linear_interpolate_color(paleblue, white, a);
 }
 
 color_t trace(Ray *ray)

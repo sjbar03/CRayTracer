@@ -24,6 +24,7 @@ typedef struct
 #define black   ((color_t) {true, 0, 0, 0})
 #define gray    ((color_t) {true, half, half, half})
 #define skyblue ((color_t) {true, float2fix(0.5), float2fix(0.7), float2fix(1.0)})
-#define babyblue ((color_t) {true, float2fix(0.27), float2fix(0.405), float2fix(0.47)})
+#define babyblue ((color_t) {true, float2fix(0.27), float2fix(0.405), float2fix(0.7)})
+#define paleblue ((color_t) {true, float2fix(0.33), float2fix(0.40), float2fix(0.60)})
 
 #endif
