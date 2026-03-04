@@ -34,82 +34,38 @@ Vec3 vp_dv = {0, - divfix(vp_height, image_height), 0};
 Vec3 vp_upper_left;
 Vec3 vp_pixel;
 
-Vec3 sp1_center = {0,0,int2fix(-5)};
-const Sphere sp1 = {&sp1_center, int2fix(2), skyblue};
+// basis vectors
+Vec3 bx = {one, 0, 0};
+Vec3 by = {0, one, 0};
+Vec3 bz = {0, 0, one};
+
+Vec3 sp1_center = {0,float2fix(0.1),int2fix(-5)};
+const Sphere sp1 = {&sp1_center, float2fix(2.0), skyblue, 0};
 
 Vec3 sp2_center = {0, int2fix(-100), int2fix(-10)};
-const Sphere sp2 = {&sp2_center, float2fix(98.0), gray};
+const Sphere sp2 = {&sp2_center, float2fix(98.0), gray, 0};
 
-Sphere sps[2] = {sp1, sp2};
+Vec3 sp3_center = {int2fix(5), 0, int2fix(-5)};
+const Sphere sp3 = {&sp3_center, float2fix(1), white, one};
+
+Sphere sps[3] = {sp1, sp2, sp3};
 
 Vec3 cam_step = {0, 0, float2fix(0.01)};
 
-color_t linear_interpolate_color(color_t C1, color_t C2, fix15 t)
+
+fix15 clamp(fix15 val, fix15 min, fix15 max)
 {
-    fix15 j = one - t;
-    color_t res;
+    if (min <= val && max >= val) return val;
+    if (min > val) return min;
+    return max;
 
-    res.R = multfix(t, C1.R) + multfix(j, C2.R);
-    res.G = multfix(t, C1.G) + multfix(j, C2.G);
-    res.B = multfix(t, C1.B) + multfix(j, C2.B);
-    res.A = C1.A & C2.A;
-
-    return res;
 }
-
-color_t color_scale(color_t in, fix15 scale)
-{
-    return (color_t) {
-        true,
-        multfix(in.R, scale),
-        multfix(in.G, scale),
-        multfix(in.B, scale)
-    };
-}
-
-color_t add_color(color_t in1, color_t in2)
-{
-    return (color_t) {
-        true,
-        in1.R + in2.R,
-        in1.G + in2.G,
-        in1.B + in2.B
-    };
-}
-
-color_t gamma_correct(color_t c)
-{
-    if (c.R < 0) c.R = 0;
-    if (c.G < 0) c.G = 0;
-    if (c.B < 0) c.B = 0;
-
-    if (c.R > one) c.R = one;
-    if (c.G > one) c.G = one;
-    if (c.B > one) c.B = one;
-
-    c.R = fixSqrt(c.R);
-    c.G = fixSqrt(c.G);
-    c.B = fixSqrt(c.B);
-
-    return c;
-}
-
-// color_t ray_color(int x, int y)
-// {
-//     color_t C1 = white;
-//     color_t C2 = skyblue;
-
-//     fix15 t = divfix(int2fix(y), int2fix(WINDOW_HEIGHT));
-
-//     return linear_interpolate_color(C1, C2, t);
-
-// }
 
 color_t ray_color(Ray *ray, int depth)
 {
     if (depth <= 0) return black;
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         Sphere sp = sps[i];
         
@@ -129,15 +85,15 @@ color_t ray_color(Ray *ray, int depth)
 
             color_t rc = ray_color(&rr, depth - 1);
 
-            return color_scale(rc, half);
+            return color_scale(rc, float2fix(0.6));
         }
     }
     
     Vec3 uv = direction(ray);
     normalize(&uv);
 
-    fix15 a = multfix(half, uv.y + one);
-    return linear_interpolate_color(paleblue, white, a);
+    fix15 a = multfix(dot(&by, &uv) + one, half);
+    return linear_interpolate_color(white, skyblue, a);
 }
 
 color_t trace(Ray *ray)
@@ -179,29 +135,12 @@ void *entry(void *frame_buffer)
 
                 c = color_scale(c, sample_scale);
 
-                fb[x + (y * WINDOW_WIDTH)] = ENCODE(c);
+                fb[x + (y * WINDOW_WIDTH)] = ENCODE(gamma_correct(c));
                 addVec(&vp_pixel, &vp_pixel, &vp_du);
             }
             addVec(&row_start, &row_start, &vp_dv);
         } 
 
-        // if (camera.z > two)
-        // {
-        //     dir = 0;
-        // }
-        // else if (camera.z < n_two)
-        // {
-        //     dir = 1;
-        // }
-        
-        // if (dir)
-        // {
-        //     addVec(&camera, &camera, &cam_step);
-        // }
-        // else
-        // {
-        //     subVec(&camera, &camera, &cam_step);
-        // }
         
     } while(0);
 

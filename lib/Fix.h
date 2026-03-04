@@ -15,15 +15,15 @@ typedef signed int fix15; // 17.15 fixed point
 #define divfix(a,b)     ((fix15)((((signed long long) (a)) << 15) / (b)))
 #define square(a)       (multfix(a, a))
 
-#define threehalfs ((fix15) 49152)
-#define half       ((fix15) 16384)
-#define one        ((fix15) 32768)
-#define n_one      ((fix15) -32768)
-#define thirty_one ((fix15) 1015808)
-#define tentwentythree ((fix15) 33554432)
-#define two        ((fix15) 65536)
-#define n_two      ((fix15) -65536)
-#define four       ((fix15) 131072)
+#define threehalfs          ((fix15) 49152)
+#define half                ((fix15) 16384)
+#define one                 ((fix15) 32768)
+#define n_one               ((fix15) -32768)
+#define thirty_one          (int2fix(31)) 
+#define tentwentythree      int2fix(1023)
+#define two                 ((fix15) 65536)
+#define n_two               ((fix15) -65536)
+#define four                ((fix15) 131072)
 
 /*
 Fixed point approximation of the reciprocal square root of a

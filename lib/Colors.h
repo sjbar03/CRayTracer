@@ -23,8 +23,14 @@ typedef struct
 #define white   ((color_t) {true, one, one, one})
 #define black   ((color_t) {true, 0, 0, 0})
 #define gray    ((color_t) {true, half, half, half})
-#define skyblue ((color_t) {true, float2fix(0.5), float2fix(0.7), float2fix(1.0)})
+#define lightgray ((color_t) {true, float2fix(0.1),float2fix(0.1),float2fix(0.1)})
+#define skyblue ((color_t) {true, float2fix(0.4), float2fix(0.60), float2fix(1.0)})
 #define babyblue ((color_t) {true, float2fix(0.27), float2fix(0.405), float2fix(0.7)})
 #define paleblue ((color_t) {true, float2fix(0.33), float2fix(0.40), float2fix(0.60)})
+
+color_t linear_interpolate_color(color_t C1, color_t C2, fix15 t);
+color_t color_scale(color_t in, fix15 scale);
+color_t add_color(color_t in1, color_t in2);
+color_t gamma_correct(color_t c);
 
 #endif

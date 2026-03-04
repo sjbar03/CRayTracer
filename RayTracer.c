@@ -39,6 +39,7 @@ bool update()
     }
 
     SDL_UnlockTexture(gSDLTexture);
+    SDL_RenderClear(gSDLRenderer);
     SDL_RenderTexture(gSDLRenderer, gSDLTexture, NULL, NULL);
     SDL_RenderPresent(gSDLRenderer);
     SDL_Delay(5);

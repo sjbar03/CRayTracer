@@ -15,6 +15,7 @@ add_executable(RayTracer WIN32
     lib/Fix.c
     lib/Vec3.c
     lib/RayRenderer.c
+    lib/Colors.c
 )
 
 target_compile_options(RayTracer PRIVATE

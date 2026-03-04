@@ -17,6 +17,7 @@ typedef struct
     Vec3 *center;
     fix15 radius;
     color_t color;
+    fix15 emissive;
 } Sphere;
 
 Vec3 direction(Ray *ray)
