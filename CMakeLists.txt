@@ -12,10 +12,10 @@ add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 # Create your game executable target as usual
 add_executable(RayTracer WIN32
     RayTracer.c
-    lib/Fix.c
-    lib/Vec3.c
-    lib/RayRenderer.c
-    lib/Colors.c
+    src/Fix.c
+    src/Vec3.c
+    src/RayRenderer.c
+    src/Colors.c
 )
 
 target_compile_options(RayTracer PRIVATE

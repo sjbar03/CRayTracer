@@ -4,7 +4,7 @@
 #include "lib/Colors.h"
 #include "Viewport.h"
 #include <pthread.h>
-#include "lib/RayRenderer.h"
+#include "src/RayRenderer.h"
 #include <signal.h>
 
 SDL_Window* gSDLWindow;
